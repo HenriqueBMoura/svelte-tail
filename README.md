@@ -36,3 +36,18 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Best Practices & Organization
+
+This codebase follows these key principles:
+
+- **Separation of Concerns**
+  - Types
+  - State management
+  - UI components
+- **Code Quality**
+  - Reusable and maintainable code structure
+  - Improved testability
+  - Clean and focused main page components
+- **Type Safety**
+  - Leverages TypeScript for enhanced type checking
