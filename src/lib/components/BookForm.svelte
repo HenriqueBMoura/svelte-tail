@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { NewBook } from '$lib/types/book';
-    import { addBook } from '$lib/stores/bookStore';
+    import { addBook } from '$lib/stores/searchStore';  // Updated import
+    import { books, filters } from '$lib/stores/searchStore';  // Add stores
   
     let newBook: NewBook = {
       title: '',
@@ -10,13 +11,17 @@
   
     function handleSubmit() {
       addBook(newBook);
+      // Reset form
       newBook = {
         title: '',
         author: '',
         status: 'want-to-read'
       };
+      // Clear filters after adding
+      $filters.search = '';
+      $filters.status = undefined;
     }
-  </script>
+</script>
   
   <div class="bg-white p-6 rounded-lg shadow-md mb-8">
     <h2 class="text-xl font-semibold mb-4">Add New Book</h2>
