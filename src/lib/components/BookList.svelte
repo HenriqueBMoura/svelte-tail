@@ -1,6 +1,26 @@
 <script lang="ts">
-    import { filteredBooks, deleteBook } from '$lib/stores/searchStore';
-  </script>
+    import { onMount, onDestroy } from 'svelte';
+    import { filteredBooks, deleteBook, books } from '$lib/stores/searchStore';
+
+    let unsubscribe: () => void;
+
+    onMount(() => {
+        unsubscribe = () => {};
+        // Handle storage events from other tabs
+        const handleStorage = (event: StorageEvent) => {
+            if (event.key === 'bookshelf_books') {
+                const newValue = event.newValue ? JSON.parse(event.newValue) : [];
+                books.set(newValue);
+            }
+        };
+
+        window.addEventListener('storage', handleStorage);
+        return () => {
+            window.removeEventListener('storage', handleStorage);
+            if (unsubscribe) unsubscribe();
+        };
+    });
+</script>
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {#each $filteredBooks as book (book.id)}
