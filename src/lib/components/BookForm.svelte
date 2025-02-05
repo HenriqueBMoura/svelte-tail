@@ -1,26 +1,21 @@
 <script lang="ts">
-    import type { NewBook } from '$lib/types/book';
-    import { addBook } from '$lib/stores/searchStore';  // Updated import
-    import { books, filters } from '$lib/stores/searchStore';  // Add stores
-  
-    let newBook: NewBook = {
+  import type { NewBook } from '$lib/types/book';
+  import { books } from '$lib/stores/bookStore';
+
+  let newBook: NewBook = {
+    title: '',
+    author: '',
+    status: 'want-to-read'
+  };
+
+  function handleSubmit() {
+    books.addBook(newBook);
+    newBook = {
       title: '',
       author: '',
       status: 'want-to-read'
     };
-  
-    function handleSubmit() {
-      addBook(newBook);
-      // Reset form
-      newBook = {
-        title: '',
-        author: '',
-        status: 'want-to-read'
-      };
-      // Clear filters after adding
-      $filters.search = '';
-      $filters.status = undefined;
-    }
+  }
 </script>
   
   <div class="bg-white p-6 rounded-lg shadow-md mb-8">
