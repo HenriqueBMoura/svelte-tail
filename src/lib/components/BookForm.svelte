@@ -1,22 +1,22 @@
 <script lang="ts">
-    import type { NewBook } from '$lib/types/book';
-    import { addBook } from '$lib/stores/bookStore';
-  
-    let newBook: NewBook = {
+  import type { NewBook } from '$lib/types/book';
+  import { books } from '$lib/stores/bookStore';
+
+  let newBook: NewBook = {
+    title: '',
+    author: '',
+    status: 'want-to-read'
+  };
+
+  function handleSubmit() {
+    books.addBook(newBook);
+    newBook = {
       title: '',
       author: '',
       status: 'want-to-read'
     };
-  
-    function handleSubmit() {
-      addBook(newBook);
-      newBook = {
-        title: '',
-        author: '',
-        status: 'want-to-read'
-      };
-    }
-  </script>
+  }
+</script>
   
   <div class="bg-white p-6 rounded-lg shadow-md mb-8">
     <h2 class="text-xl font-semibold mb-4">Add New Book</h2>
