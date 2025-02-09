@@ -34,6 +34,15 @@ function createPersistentBookStore() {
     },
     deleteBook: (id: string) => {
       update(books => books.filter(b => b.id !== id));
+    },
+    editBook: (id: string, updates: Partial<Book>) => {
+      update(books => 
+        books.map(book => 
+          book.id === id 
+            ? { ...book, ...updates }
+            : book
+        )
+      );
     }
   };
 }
