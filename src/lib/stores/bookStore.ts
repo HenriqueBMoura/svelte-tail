@@ -1,5 +1,6 @@
 import { writable, derived } from 'svelte/store';
 import type { Book, BookFilters, NewBook } from '$lib/types/book';
+import { showToast } from '$lib/stores/toastStore';
 
 const STORAGE_KEY = 'bookshelf_books';
 
@@ -30,19 +31,27 @@ function createPersistentBookStore() {
         id: crypto.randomUUID(),
         createdAt: Date.now()
       };
-      update(books => [...books, book]);
+      update(books => {
+        showToast('Book added successfully!', 'success');
+        return [...books, book];
+      });
     },
     deleteBook: (id: string) => {
-      update(books => books.filter(b => b.id !== id));
+      update(books => {
+        showToast('Book deleted successfully!', 'success');
+        return books.filter(b => b.id !== id);
+      });
     },
     editBook: (id: string, updates: Partial<Book>) => {
-      update(books => 
-        books.map(book => 
+      update(books => {
+        const updatedBooks = books.map(book => 
           book.id === id 
             ? { ...book, ...updates }
             : book
-        )
-      );
+        );
+        showToast('Book updated successfully!', 'success');
+        return updatedBooks;
+      });
     }
   };
 }
