@@ -41,6 +41,7 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
+		"@zerodevx/svelte-toast": "^0.9.6",
 		"svelte-toast": "^1.0.0"
 	}
 }
