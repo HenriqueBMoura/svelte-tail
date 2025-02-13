@@ -11,6 +11,7 @@
     <BookForm />
     <BookSearch />
     <ToastContainer />
+    <toast-container></toast-container>
 </div>
 
 <style lang="postcss">
