@@ -36,7 +36,7 @@
   });
 </script>
 
-<div class="mb-6 space-y-4">
+<div class="mb-6 space-y-4 p-6">
   <div class="flex gap-4">
     <input
       type="text"

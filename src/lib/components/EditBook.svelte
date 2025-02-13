@@ -1,6 +1,7 @@
 <script lang="ts">
   import { books } from '$lib/stores/bookStore';
   import type { Book } from '$lib/types/book';
+  import { showToast } from '$lib/stores/toastStore';
 
   export let book: Book;
   export let onEditComplete: () => void; // Callback prop for edit completion
@@ -15,6 +16,7 @@
       }
       return currentBooks;
     });
+    showToast('Book updated successfully!', 'success'); // Show toast message
     onEditComplete(); // Call the callback prop
   }
 </script>
