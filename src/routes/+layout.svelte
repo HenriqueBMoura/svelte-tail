@@ -34,7 +34,7 @@
     <toast-container></toast-container>
     
     <main class="container mx-auto p-4 bg-secondary-50 dark:bg-dark-secondary-50">
-      {@render children?.()}
+      {@render children()}
       <!-- <slot /> -->
     </main>
   </div>
